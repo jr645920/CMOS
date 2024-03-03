@@ -166,12 +166,3 @@ void {return TKTYPEVOID;}
 int yywrap(){
 	return true;
 }
-
-int main() {
-	int token = 0;
-	token = yylex();
-	while(token){
-
-		token = yylex();
-	}
-}	
