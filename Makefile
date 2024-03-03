@@ -14,6 +14,6 @@ lex.yy.c: cmos.l
 
 
 clean:
-	rm -f cmos lex.yy.c PlagarismReport.txt tokens.txt
+	rm -f cmos lex.yy.c PlagarismReport.txt tokens.txt scanner
 
 .PHONY: all clean
