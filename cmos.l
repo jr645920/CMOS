@@ -58,21 +58,6 @@ using namespace std;
 //OTHER
 #define TKUNMATCHED 255
 
-int linecount = 1;
-
-void Addline(char c) {
-	if(c=='\n')
-	{
-		linecount++;
-	}
-}
-
-int line_num(){
-	return linecount;
-}
-
-
-
 
 %}
 
