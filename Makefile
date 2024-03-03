@@ -4,22 +4,15 @@ CC = g++
 # Compiler flags
 CFLAGS = -std=c++11 -Wall
 
-# Source files
-LEX_SOURCE = cmos.l
-CPP_SOURCE = cmos.cpp
+all: cmos
 
-# Executable
-EXECUTABLE = cmos
-
-all: $(EXECUTABLE)
-
-$(EXECUTABLE): lex.yy.c $(CPP_SOURCE)
+cmos: lex.yy.c cmos.cpp
 	$(CC) $(CFLAGS) -o $@ $^
 
-lex.yy.c: $(LEX_SOURCE)
+lex.yy.c: cmos.l
 	flex $^
 
 clean:
-	rm -f $(EXECUTABLE) lex.yy.c
+	rm -f cmos lex.yy.c
 
 .PHONY: all clean
