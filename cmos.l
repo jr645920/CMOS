@@ -84,9 +84,9 @@ type[(void)(int)(double)(float)]
 %%
 
 
-\/\*[^\*\/]*\*\/                  {} /* comments start with /* and end in *\             */
+\/\*[^\*\/]*\*\/                  {} 
 
-\/\/+[^\n]*\n                 {} /* comments start with // or more and end in newline            */
+\/\/+[^\n]*\n                 {}
 
 [ \t\n\f]	{} /* ignore whitespace */
 
@@ -112,7 +112,7 @@ return {return TKRETURN;}
 
 main {return TKMAIN;}
 
-({type} \*{LD}*)|({type}\* {LD}*) {return TKPOINTER;}
+({type}\*{LD}*)|({type}\*{LD}*) {return TKPOINTER;}
 
 &{LD}* {return TKADDRESS;}
 

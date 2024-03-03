@@ -3,6 +3,8 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
+#include <math.h>
+#include <limits.h>
 #include <map>
 
 
