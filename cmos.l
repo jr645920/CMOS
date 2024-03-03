@@ -76,7 +76,7 @@ int line_num(){
 
 %}
 
-L[a-zA-Z]
+
 D[0-9]
 LD[a-zA-Z0-9]
 type[(void)(int)(double)(float)]
