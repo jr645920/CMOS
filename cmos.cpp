@@ -1,65 +1,62 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <algorithm>
+#include <iterator>
+#include <map>
+
 
 using namespace std;
 
-typedef struct hash_t {
-
-};
+// hashtable
+vector < vector<multimap<int, int>> > hash_table;
 
 //  functions for winnow
-void next_hash(){
-
+int next_hash(){
+    return (rand() * 100) % 4;
 }
 
 int global_pos(int m, int r, int w){
-
+    return m + r;
 }
 
-void record(){
-
+void record(int hash, int nextposition){
+    multimap<int, int> tmp(hash, nextposition);
+    hash_table[hash].push_back(tmp);
 }
 
 //  main winnow function
-void winnow(int w /*window size*/) {
-    // circular buffer implementing window of size w
-    hash_t h[w];
-    for (int i = 0; i < w; ++i)
-        h[i] = 999;
-    int r = 0;   // window right end
-    int min = 0; // index of minimum hash
-    // At the end of each iteration, min holds the
-    // position of the rightmost minimal hash in the
-    // current window. record(x) is called only the
-    // first time an instance of x is selected as the
-    // rightmost minimal hash of a window.
-    while (true)
-    {
-        r = (r + 1) % w;    // shift the window by one
-        h[r] = next_hash(); // and add one new hash
-        if (min == r)
-        {
-            // The previous minimum is no longer in this
-            // window. Scan h leftward starting from r
-            // for the rightmost minimal hash. Note min
-            // starts with the index of the rightmost
-            // hash.
-            for (int i = (r - 1) % w; i != r; i = (i - 1 + w) % w)
-                if (h[i] < h[min])
+void winnow(int w, vector<vector<multimap<int, int>>>& hash_table) {
+    vector<int> h(w, 999); // Circular buffer implementing window of size w
+    int r = 0; // Window right end
+    int min = 0; // Index of minimum hash
+
+    while (true) {
+        r = (r + 1) % w; // Shift the window by one
+        h[r] = next_hash(); // Add one new hash
+        
+        if (min == r) {
+            // The previous minimum is no longer in this window
+            // Scan h leftward starting from r for the rightmost minimal hash
+            for (int i = (r - 1 + w) % w; i != r; i = (i - 1 + w) % w) {
+                if (h[i] < h[min]) {
                     min = i;
+                }
+            }
+            // Record the minimal hash
             record(h[min], global_pos(min, r, w));
-        }
-        else
-        {
-            // Otherwise, the previous minimum is still in
-            // this window. Compare against the new value
-            // and update min if necessary.
-            if (h[r] <= h[min])
-            { // (*)
+        } else {
+            // The previous minimum is still in this window
+            // Compare against the new value and update min if necessary
+            if (h[r] <= h[min]) {
                 min = r;
+                // Record the minimal hash
                 record(h[min], global_pos(min, r, w));
             }
         }
     }
+}
+
+int main(){
+
 }
