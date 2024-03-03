@@ -28,33 +28,33 @@ using namespace std;
 #define TKPRINT 006
 #define TKSCAN 007
 //MAIN, INCLUDE, RETURN
-#define TKRETURN 008
-#define TKINCLUDE 009
-#define TKMAIN 010
+#define TKRETURN 010
+#define TKINCLUDE 011
+#define TKMAIN 012
 //TYPES
-#define TKTYPENUM 011 //int, double, float
-#define TKTYPECHAR 012
-#define TKTYPESTRING 013
-#define TKTYPEBOOL 014
-#define TKTYPEVOID 015
+#define TKTYPENUM 013 //int, double, float
+#define TKTYPECHAR 014
+#define TKTYPESTRING 015
+#define TKTYPEBOOL 016
+#define TKTYPEVOID 017
 //VALUES
-#define TKPOINTER 016
-#define TKADDRESS 017
-#define TKWORD 018
-#define TKNUM 019
-#define TKSTRING 020
+#define TKPOINTER 020
+#define TKADDRESS 021
+#define TKWORD 022
+#define TKNUM 023
+#define TKSTRING 024
 //OPERATORS
-#define TKADD 021
-#define TKSUB 022
-#define TKMUL 023
-#define TKDIV 024
-#define TKMOD 025
-#define TKEQU 026
-#define TKNSEQU 027
-#define TKAND 028
-#define TKOR 029
-#define TKBOOLEQU 030
-#define TKBOOLNEQU 031
+#define TKADD 025
+#define TKSUB 026
+#define TKMUL 027
+#define TKDIV 030
+#define TKMOD 031
+#define TKEQU 032
+#define TKSEQU 033
+#define TKAND 034
+#define TKOR 035
+#define TKBOOLEQU 036
+#define TKBOOLNEQU 037
 //OTHER
 #define TKUNMATCHED 255
 
@@ -112,7 +112,7 @@ return {return TKRETURN;}
 
 main {return TKMAIN;}
 
-({type} \*{LD}*)|({type}\* {LD}*) {return TKPOINTER;}
+({type}\*{LD}*)|({type}\*{LD}*) {return TKPOINTER;}
 
 &{LD}* {return TKADDRESS;}
 
@@ -144,7 +144,7 @@ void {return TKTYPEVOID;}
 
 == {return TKBOOLEQU;}
 
-!= {return TKBOOKNEQU;}
+!= {return TKBOOLNEQU;}
 
 = {return TKEQU;}
 
@@ -171,21 +171,7 @@ int main() {
 	int token = 0;
 	token = yylex();
 	while(token){
-		switch (token) {
-			case TKPNUM:
-				cout << "Found a P number on line " << line_num() << " : " << yytext << endl;
-				break;
-			case TKSSNUM:
-				cout << "Found a SS number on line " << line_num() << " : " << yytext << endl;
-				break;
-			case TKOBPNUM:
-				cout << "Found an obfuscated P number on line " << line_num() << " : " << yytext << endl;
-				break;
-			case TKOBSSNUM:
-				cout << "Found an obfuscated SS number on line " << line_num() << " : " << yytext << endl;
-				break;
-			}
-	
+
 		token = yylex();
 	}
 }	
