@@ -14,49 +14,50 @@
 //declarations
 
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
 //LOOPS
-#define TKFLOOP 001
-#define TKWLOOP 002
-#define TKDLOOP 003
+#define TKFLOOP 1
+#define TKWLOOP 2
+#define TKDLOOP 3
 //CONDITIONAL
-#define TKIF 004
-#define TKELSE 005
+#define TKIF 4
+#define TKELSE 5
 //FILE ACTIONS
-#define TKPRINT 006
-#define TKSCAN 007
+#define TKPRINT 6
+#define TKSCAN 7
 //MAIN, INCLUDE, RETURN
-#define TKRETURN 010
-#define TKINCLUDE 011
-#define TKMAIN 012
+#define TKRETURN 8
+#define TKINCLUDE 9
+#define TKMAIN 10
 //TYPES
-#define TKTYPENUM 013 //int, double, float
-#define TKTYPECHAR 014
-#define TKTYPESTRING 015
-#define TKTYPEBOOL 016
-#define TKTYPEVOID 017
+#define TKTYPENUM 11 //int, double, float
+#define TKTYPECHAR 12
+#define TKTYPESTRING 13
+#define TKTYPEBOOL 14
+#define TKTYPEVOID 15
 //VALUES
-#define TKPOINTER 020
-#define TKADDRESS 021
-#define TKWORD 022
-#define TKNUM 023
-#define TKSTRING 024
+#define TKPOINTER 16
+#define TKADDRESS 17
+#define TKWORD 18
+#define TKNUM 19
+#define TKSTRING 20
 //OPERATORS
-#define TKADD 025
-#define TKSUB 026
-#define TKMUL 027
-#define TKDIV 030
-#define TKMOD 031
-#define TKEQU 032
-#define TKSEQU 033
-#define TKAND 034
-#define TKOR 035
-#define TKBOOLEQU 036
-#define TKBOOLNEQU 037
+#define TKADD 21
+#define TKSUB 22
+#define TKMUL 23
+#define TKDIV 24
+#define TKMOD 25
+#define TKEQU 26
+#define TKSEQU 27
+#define TKAND 28
+#define TKOR 29
+#define TKBOOLEQU 30
+#define TKBOOLNEQU 31
 //OTHER
-#define TKUNMATCHED 255
+#define TKUNMATCHED 0
 
 
 %}
@@ -137,12 +138,7 @@ void {return TKTYPEVOID;}
 
 \|\| {return TKOR;}
 
-
-
-
-.							{ 	//unmatched
-								return TKUNMATCHED;
-							}
+.	{return TKUNMATCHED;}
 
 
 
@@ -150,4 +146,24 @@ void {return TKTYPEVOID;}
 
 int yywrap(){
 	return true;
+}
+
+int main(){
+	int token = 0;
+	ofstream fout;
+
+	//open the file
+	fout.open("scanner_out.txt");
+	if(fout.is_open()){
+		token = yylex();
+		fout << token;
+		while(token){
+			//output to file with a " " before it
+			fout << " " << token;
+			token = yylex();
+		}
+	}
+	else{
+		cout << "failed to open scanner out file" << endl;
+	}
 }

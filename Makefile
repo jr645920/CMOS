@@ -6,7 +6,10 @@ CFLAGS = -std=c++11 -Wall
 
 all: cmos scanner
 
-scanner: lex.yy.c cmos.cpp
+scanner: lex.yy.c
+	$(CC) $(CFLAGS) -o $@ $^
+
+cmos: cmos.cpp
 	$(CC) $(CFLAGS) -o $@ $^
 
 lex.yy.c: cmos.l
