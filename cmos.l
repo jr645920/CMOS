@@ -116,9 +116,9 @@ bool {return TKTYPEBOOL;}
 
 void {return TKTYPEVOID;}
 
-{D}* {return TKNUM;}
+{D}+ {return TKNUM;}
 
-{LD}* {return TKWORD;}
+{LD}+ {return TKWORD;}
 
 \+|\+= {return TKADD;}
 
