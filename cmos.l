@@ -76,7 +76,7 @@ type[(void)(int)(double)(float)]
 
 [ \t\n\f]	{} /* ignore whitespace */
 
-[;\(\)\{\}] {} /* ignore semicolon, parenthesis, and brackets*/
+[;\(\)\{\}\.\,\<\>\%\'\$\_\^\[\]\:\\\?\	] {} /* ignore semicolon, parenthesis, and brackets*/
 
 for	{return TKFLOOP;}/* any for loop */
 
@@ -138,7 +138,7 @@ void {return TKTYPEVOID;}
 
 \|\| {return TKOR;}
 
-.	{return TKUNMATCHED;}
+.	{cout << "UNMATCHED: " << yytext << "     ";}
 
 
 
