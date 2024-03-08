@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <vector>
 #include <string>
@@ -91,7 +92,7 @@ double calculate_similarity(const unordered_set<size_t>& set_one, const unordere
 int main() {
     // Experiment with k-gram and window size
     int k = 10;            
-    int w = 20; 
+    int w = k; 
 
     // Read in tokens
     vector<vector<string>> submissions = read_in_tokens();
