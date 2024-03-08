@@ -1,14 +1,8 @@
 %{
 //*****************************************************************************************
-// File: inforScan.l
-// Purpose: To scan through a file and identify potential P numbers and SSNs.
-// Obfuscated numbers (XXX-##-1234) are also detected, as those could be pieced together
-// into more complete data sets
-//
-// build instructions
-// flex infoScanner.l
-// g++ -o infoScanner lex.yy.x
-// ./infoScanner < data_file.txt
+// Filename: cmos.l
+// Authors: Hunter Smith and Johnathan Reilly
+// Brief: A LEX program that tokenizes student sumbission file to be checked for plagarism
 // ****************************************************************************************
 
 //declarations
