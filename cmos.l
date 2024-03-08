@@ -140,7 +140,7 @@ void {return TKTYPEVOID;}
 
 \|\| {return TKOR;}
 
-.	{cout << "UNMATCHED: " << yytext << "     "; return TKUNMATCHED;}
+.	{return TKUNMATCHED;}
 
 
 
